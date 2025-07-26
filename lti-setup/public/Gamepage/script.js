@@ -222,10 +222,31 @@ function showresult(){
     })
 
 }
+
+// send the score to the server 
+async function sendScore(score) {
+    try {
+        const response = await fetch('/grade', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ grade: score })
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log('Score submitted successfully:', data);
+    } catch (error) {
+        console.error('Error submitting score:', error);
+    }
+}
+
 function showscore(){
+    sendScore(Math.max(scoreofplayer1, scoreofplayer2));
     if (scoreofplayer1>scoreofplayer2){
         winnername=player1name;
-        showresult()
     }
     else if (scoreofplayer1==scoreofplayer2) {
         
