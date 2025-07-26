@@ -1,5 +1,6 @@
 {
   "dependencies": {
     "ltijs": "^5.9.7"
-  }
+  },
+  "type": "module"
 }
