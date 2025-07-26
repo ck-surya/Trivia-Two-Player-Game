@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded",()=>{
     })
 });
 function startquiz(){
+    const ltik = new URLSearchParams(window.location.search).get('ltik')
+    console.log("LTI Key:", ltik);
+    localStorage.setItem('ltik', ltik);
     player1name=localStorage.getItem('player1');
     player2name=localStorage.getItem('player2');
     start_button.addEventListener("click",()=>{

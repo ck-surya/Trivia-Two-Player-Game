@@ -65,8 +65,8 @@ let scoreofplayer1=0;
 let scoreofplayer2=0;
 async function startQuiz() {
     // Preserve ltik in URL if navigating from another page
-    const urlParams = new URLSearchParams(window.location.search);
-    const ltik = urlParams.get('ltik');
+    // const urlParams = new URLSearchParams(window.location.search);
+    const ltik = new URLSearchParams(window.location.search).get('ltik') || sessionStorage.getItem('ltik');
     if (!ltik) {
         // Try to get ltik from sessionStorage if available
         const sessionLtik = sessionStorage.getItem('ltik');
