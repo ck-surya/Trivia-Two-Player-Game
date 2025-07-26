@@ -223,10 +223,12 @@ function showresult(){
 
 }
 
-// send the score to the server 
 async function sendScore(score) {
     try {
-        const response = await fetch('/grade', {
+        // Get ltik from URL (if present)
+        const urlParams = new URLSearchParams(window.location.search);
+        const ltik = urlParams.get('ltik');
+        const response = await fetch(`/grade?ltik=${ltik}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
