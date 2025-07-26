@@ -24,7 +24,9 @@ document.addEventListener("DOMContentLoaded",()=>{
             localStorage.setItem("player1",player1name);
             localStorage.setItem("player2",player2name);
             localStorage.setItem("category",category[category.length-1]);
-            window.location.href='Gamepage/index.html';
+            // Preserve ltik token in navigation
+            const ltik = new URLSearchParams(window.location.search).get('ltik') || localStorage.getItem('ltik');
+            window.location.href = `Gamepage/index.html?ltik=${ltik}`;
             
         }
         else{
