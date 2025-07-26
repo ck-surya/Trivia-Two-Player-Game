@@ -21,6 +21,7 @@ await lti.setup(
       secure: false,
       sameSites: "None",
     },
+    staticPath: path.join(__dirname, "./public"),
     devMode: true,
     dynRegRoute: "/register", // Setting up dynamic registration route. Defaults to '/register'
     dynReg: {
