@@ -64,6 +64,20 @@ let currentQuestionIndex=0;
 let scoreofplayer1=0;
 let scoreofplayer2=0;
 async function startQuiz() {
+    // Preserve ltik in URL if navigating from another page
+    const urlParams = new URLSearchParams(window.location.search);
+    const ltik = urlParams.get('ltik');
+    if (!ltik) {
+        // Try to get ltik from sessionStorage if available
+        const sessionLtik = sessionStorage.getItem('ltik');
+        if (sessionLtik) {
+            window.location.search = `?ltik=${sessionLtik}`;
+            return;
+        }
+    } else {
+        // Store ltik in sessionStorage for future navigation
+        sessionStorage.setItem('ltik', ltik);
+    }
     questions=[];
     easy=[];
     medium=[];
@@ -228,6 +242,11 @@ async function sendScore(score) {
         // Get ltik from URL (if present)
         const urlParams = new URLSearchParams(window.location.search);
         const ltik = urlParams.get('ltik');
+        console.log('LTIK:', ltik);
+        if (!ltik) {
+            throw new Error('LTIK not found in URL');
+        }
+        // Send the score to the server 
         const response = await fetch(`/grade?ltik=${ltik}`, {
             method: 'POST',
             headers: {
